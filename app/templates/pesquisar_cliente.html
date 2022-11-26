@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% include 'sidebar.html' %}
+{% block content %}
+    <center>
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning alert-dismissible  col-md-7" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </center>
+
+    <center><h3><font color="DEAE86">Procurar cliente</font></h3></center>
+    <br/>
+    <div class="classe1>">
+        <div class="classe3">
+            <form method="POST" action="{{ url_for('pesquisar_cliente')}}" class="d-flex">
+                {{ form.hidden_tag() }}
+                <input class="form-control me-3" type="search" placeholder="Digite o nome do cliente" aria-label="Pesquisar" name="pesquisar">
+                <div class="d-flex justify-content-center">
+                    <button type="submit"  name="Procurar" class="btn btn-secondary">Procurar</button>
+                    <br/>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/><br/>
+    {% if pesquisar == None %}
+    <p></p>
+    {% elif cliente %}
+        {% for cliente in cliente %}
+            <div class="classe3">
+                <br/>
+                <a href="{{ url_for('cliente', cliente_id=cliente.cliente_id) }} " style="font-size: 30px" >
+                    {{ cliente.nome }} {{ cliente.sobrenome }}
+                    <br/>
+                </a>
+            </div>
+        {% endfor %}            
+    {% else %}
+        <div>                           
+            <h4><center><font color="#d64161">Cliente {{ pesquisar }} não foi encontrado</font></center></h>
+        </div>                         
+    {% endif %}
+{% endblock %}

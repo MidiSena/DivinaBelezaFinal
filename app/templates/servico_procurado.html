@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% include 'sidebar.html' %}
+{% block content %}
+    <center>
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning alert-dismissible  col-md-7" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </center>
+
+    <center><h3><font color="DEAE86">Dados do serviço</font></h3></center>
+    <br/>
+    <div class="classe1">
+        <div class="container">
+            <div class="classe3">
+                <div class="classe4">
+                    <div class="text-center text-md-center mb-4 mt-md-0">
+                        <br/>
+                        <p>Serviço: {{ servico.servico }}</p>
+                        <p>Preço: R$ {{ servico.preco }}</p>
+                        <p>Tempo: {{ servico.tempo }} h</p>
+                        <br/>
+                        <a button type="submit" name="editarservico" href="{{ url_for('editar_servico', servico_id=servico.servico_id) }}" class="btn btn-secondary"> Editar serviço</button></a>
+                        <br/><br/>
+
+                        <form method="POST" action="{{ url_for('delete_servico', servico_id=servico.servico_id) }}">
+                            <button type="submit" value="Remover serviço" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja remover este serviço?')">Remover serviço</button>
+                        </form>
+                    </div>  
+                </div>
+            </div> 
+        </div>
+    </div>
+{% endblock %}

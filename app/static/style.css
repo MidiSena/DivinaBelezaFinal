@@ -1,0 +1,176 @@
+	 body
+	  {
+		/*background-color: #383838;*/
+		background-image: url("./img/background5.jpg"); 
+    	background-repeat: no-repeat; /*não repdetir a imagem*/
+    	background-size: cover; /*Imagem ocupar todo o espaço*/
+    	background-attachment: fixed; /*Fixa a imagem*/
+    	background-position: center;
+    	
+
+	  }
+
+	  .class1{
+		font: #FFFFFF;
+		font-size: 24 pt;
+	  }
+	  .content{
+		margin: 5px;
+		width: 50%;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+	.cliente{
+		flex: 20%;
+		padding: 15px;
+		margin: 5px;
+		background-color: #C0C0C0;
+		inline-size: 30%;
+		font: #0000;
+	}
+
+	.classe9{
+		font: #818181;
+		font-family: 'tex gyre adventor';
+		font-size: 24pt;
+		text-decoration: none;
+		align-content: center;
+		
+	}
+
+	.classe1{
+		height: lg-100px;
+		margin-top: lg-0px;
+		background: soft;
+		display:flex;
+		align-items: center;
+	}
+
+	.classe2{
+
+	  justify-content: center;
+	}
+
+	.classe3{
+	  columns: 8;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	}
+
+	.classe4{
+	  background: #E2CCBC;
+	  border: 0;
+	  border-style: light;
+	  border-radius: 5px;
+	  padding: 245px;
+	  padding: lg;
+	  padding: 50px;
+	  width: 445px;
+	}
+
+	.classe5{
+	  text-align: center;
+	  text-decoration: md;
+	  margin-bottom: -4px;
+	  margin-top: -0;
+	}
+
+	.classe6{
+	  box-shadow: span;
+	  padding: 33px;
+	  margin-bottom: -15px;
+	  margin-top: -0;
+	  margin-left: 0px;
+	  border-radius: 5px;
+	  background-color: #D6BAAB;
+	}
+	
+	.classe7{
+		columns: 8;
+		display: flex;
+		align-items: center;
+		justify-content: left;
+	  }
+
+	.classe8{
+		columns: 8;
+		display: flex;
+		align-items: center;
+		justify-content: right;
+	  }
+
+/* sidebar */
+	  .sidenav {
+		height: 160%; /* Full-height: remove this if you want "auto" height */
+		width: 170px; /* Set the width of the sidebar */
+		position: absolute; /* Fixed Sidebar (stay in place on scroll) */
+		z-index: 1; /* Stay on top */
+		top: 56px; /* Stay at the top */
+		left: 0;
+		background-color: #112639; /* Black */
+		overflow-x: hidden; /* Disable horizontal scroll */
+	}
+
+	/* The navigation menu links */
+	.sidenav a {
+		padding: 5px 5px 8px 5px;
+		text-decoration: none;
+		font-size: 16px;
+		color: #818181;
+		display: block;
+	}
+	
+	/* When you mouse over the navigation links, change their color */
+	.sidenav a:hover {
+		color: #f1f1f1;
+	}
+
+
+	.parent{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	}
+	.child{
+	flex-basis: 33.33%;
+	padding: 85px;
+	box-sizing: border-box;
+	}
+	.child img{
+	width: 100%;
+	}
+
+	/* Style page content */
+	.main {
+		margin-left: 190px; /* Same as the width of the sidebar */
+		padding: 0px 10px;
+	}
+
+	.square {
+		align-items: center;
+		border: 0px solid;
+		border-radius: 5px;
+		color: white;
+		display: flex;
+		background: #986B4C;
+		height: 120px;
+		justify-content: center;
+		width: 300px;
+		font-size: 18px;
+		
+	}
+
+	.column {
+		float: left;
+		width: 33.33%;
+	  }
+	  
+	  /* Clear floats after the columns */
+	  .row:after {
+		content: "";
+		display: table;
+		clear: both;
+	  }

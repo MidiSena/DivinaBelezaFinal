@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% include 'sidebar.html' %}
+{% block content %}
+    <center>
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning alert-dismissible  col-md-7" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </center>
+  
+
+    <center><h3><font color="DEAE86">Pesquisar Serviço</font></h3></center>
+    <br/>
+    <div class="classe1>">
+        <div class="classe3">
+            <form method="POST" action="{{ url_for('pesquisar_servico')}}" class="d-flex">
+                {{ form.hidden_tag() }}
+                <input class="form-control me-3" type="search" placeholder="Digite o nome do serviço" aria-label="Pesquisar" name="pesquisarservico">
+                    <div class="d-flex justify-content-center">
+                        <button type="submit"  name="Procurar" class="btn btn-secondary">Procurar</button>
+                        <br/>
+                    </div>
+            </form>
+        </div>
+    </div>
+    <br/><br/>
+    {% if pesquisar == None %}
+    <p></p>
+    {% elif servico %}
+        {% for servico in servico %}
+            <div class="classe3">
+                <br/>
+                <a href="{{ url_for('servico', servico_id=servico.servico_id)}} " style="font-size: 30px" >
+                    {{ servico.servico }}
+                <br/>
+                </a>
+            </div>
+        {% endfor %}            
+    {% else %}
+        <div>                           
+            <h4><center><font color="#d64161">Serviço {{ pesquisar }} não foi encontrado</font></center></h>
+        </div>                         
+    {% endif%}
+        <br>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% include 'sidebar.html' %}
+{% block content %}
+
+	<center>
+		{% for message in get_flashed_messages() %}
+		<div class="alert alert-warning alert-dismissible  col-md-7" role="alert">
+		{{ message }}
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+		{% endfor %}
+
+		<div class="form-group col-md-5">
+			<h3><font color="DEAE86">Editar Agendamento</font></h3>
+			<div class="classe6">
+				<form method="post">
+					{{ form.hidden_tag() }}
+					{{ form.cliente_id.label }}
+					<select name="cliente_id" id="id_cliente" class="form-control" data-live-search="true">
+							{% if cliente[cliente_id] == agendamento[cliente_id] %}
+								<option value="{{cliente['cliente_id']}}"selected="selected">
+									{{cliente['nome']}} {{cliente['sobrenome']}}
+								</option>
+							{% endif %} 
+					</select>
+					{% for erro in form.cliente_id.errors %}
+						<p>{{ erro }}</p>
+					{% endfor %}
+					{{ form.agendamento_data.label }}
+					{{ form.agendamento_data(class="form-control", value=agendamento.agendamento_data) }}
+					{% for erro in form.agendamento_data.errors %}
+						<p>{{ erro }}</p>
+					{% endfor %}
+					{{ form.servico_id.label }}
+					<select name="servico_id" id="id_servico" class="form-control" data-live-search="true">
+						{% for servico in servico %}
+							{% if servico[servico_id] == agendamento[servico_id] %}
+								<option value="{{servico['servico_id']}}"selected="selected">
+									{{servico['servico']}}
+								</option>
+							{% endif %}>
+						{% endfor %}
+					</select>
+					{% for erro in form.servico_id.errors %}
+						<p>{{ erro }}</p>
+					{% endfor %}
+					{{ form.id.label }}
+					<select name="id" id="id_funcionario" class="form-control" data-live-search="true">
+                                {% for funcionario in funcionario %}
+                                    {% if funcionario[id] == agendamento[id] %}
+                                        <option value="{{funcionario['id']}}"selected="selected">
+                                            {{funcionario['nome']}} {{funcionario['sobrenome']}}
+                                        </option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+					{% for erro in form.id.errors %}
+						<p>{{ erro }}</p>
+					{% endfor %}
+					<br><br>
+					<button type="submit" class="btn btn-secondary">Enviar</button>
+					</p>
+				</form>
+			</div>
+		</div>
+	</center>
+	
+{% endblock %}

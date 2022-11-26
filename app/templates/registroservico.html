@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% include 'sidebar.html' %}
+{% block content %}
+    <center>
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning alert-dismissible  col-md-7" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+
+        <div class="form-group col-md-5">
+            <h3><font color="DEAE86">Cadastrar Serviço</font></h3>
+            <div class="classe6" >
+                <form method="POST">
+
+                {{ form.hidden_tag() }}
+
+                {{ form.servico.label }}
+                {{ form.servico(class="form-control") }}
+                {% for erro in form.servico.errors %}
+                    <p>{{ erro }}</p>
+                {% endfor %}
+                {{ form.preco.label }}
+                {{ form.preco(class="form-control") }}
+                {% for erro in form.preco.errors %}
+                    <p>{{ erro }}</p>
+                {% endfor %}
+                {{ form.tempo.label }}
+                {{ form.tempo(class="form-control") }}
+                {% for erro in form.tempo.errors %}
+                    <p>{{ erro }}</p>
+                {% endfor %}
+                            
+                <br><br>
+                {{ form.submit(class="form-group btn btn-success") }}
+                <br>
+                <br>
+                <a class="form-group btn btn-secondary" href="/">Voltar</a>
+                </form>
+            </div>
+        </div>
+    </center>
+{% endblock %}

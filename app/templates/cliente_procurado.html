@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% include 'sidebar.html' %}
+{% block content %}
+    <center><h3><font color="DEAE86">Dados do cliente</font></h3></center>
+    <br/>
+
+    <div class="classe1">
+        <div class="container">
+            <div class="classe3">
+                <div class="classe4">
+                    <div class="text-center text-md-center mb-4 mt-md-0">
+                        <b>
+                            <p>Nome: {{ cliente.nome }} {{ cliente.sobrenome}}</p>
+                            <p>CPF: {{ cliente.cpf }}</p>
+                            <p>E-mail: {{ cliente.email }}</p>
+                            <p>Telefone: {{ cliente.telefone }}</p>
+                        </b>
+                        <br/>
+                        <a button type="submit" name="editar" href="{{ url_for('editar_cliente', cliente_id=cliente.cliente_id) }}" class="btn btn-secondary"> Editar cliente</button></a>
+                        <br/><br/>
+                        <form method="POST" action="{{ url_for('delete', cliente_id=cliente.cliente_id) }}">
+                            <button type="submit" value="Remover cliente" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir este cliente?')">Remover cliente</button>
+                        </form>
+                    </div>  
+                </div>
+            </div> 
+        </div>
+    </div>
+{% endblock %}

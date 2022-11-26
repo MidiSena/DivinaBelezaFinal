@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% include 'sidebar.html' %}
+{% block content %}
+    <center>
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning alert-dismissible  col-md-7" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </center>
+
+    <center>
+            <div class="form-group col-md-5">
+                <h3><font color="DEAE86">Agendar atendimento</font></h3>
+                <div class="classe6" >
+                    <form method="POST">
+                        {{ form.hidden_tag() }}
+                        {{ form.cliente_id.label }}
+                        <select name="cliente_id" id="id_cliente" class="form-control" data-live-search="true">
+                            {% for cliente in cliente %}
+                                {% if cliente[cliente_id] == agendamento[cliente_id] %}
+                                    <option value="{{cliente['cliente_id']}}"selected="selected">
+                                        {{cliente['nome']}} {{cliente['sobrenome']}}
+                                    </option>
+                                {% endif %} 
+                            {% endfor %}
+                        </select>
+                        
+                        {{ form.agendamento_data.label }}
+                            <input type="datetime-local" min="09:00" max="18:00" required class="form-control form_datetime" id="id_data" name="agendamento_data">
+                        
+
+                        {{ form.servico_id.label}}
+                        <select name="servico_id" id="id_servico" class="form-control" data-live-search="true">
+                            {% for servico in servicos %}
+                                {% if servico[servico_id] == agendamento[servico_id] %}
+                                    <option value="{{servico['servico_id']}}"selected="selected">
+                                        {{servico['servico']}}
+                                    </option>
+                                {% endif %}>
+                            {% endfor %}
+                        </select>
+                        
+                        {{ form.id.label }}
+                            <select name="id" id="id_funcionario" class="form-control" data-live-search="true">
+                                {% for funcionario in funcionarios %}
+                                    {% if funcionario[id] == agendamento[id] %}
+                                        <option value="{{funcionario['id']}}"selected="selected">
+                                            {{funcionario['nome']}} {{funcionario['sobrenome']}}
+                                        </option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                            
+                        <br><br>
+                        {{ form.submit(class="form-group btn btn-success") }}
+                            <br>
+                            <br>
+                            
+                            <a class="btn btn-secondary" href="/agendamentos">Agenda</a>
+                    </form>
+                </div>
+            </div>
+        </center>
+{% endblock %}

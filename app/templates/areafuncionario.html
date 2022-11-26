@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    <center>
+      {% for message in get_flashed_messages() %}
+      <div class="alert alert-warning alert-dismissible  col-md-7" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+    </center>
+    
+    <div class="classe9">
+    {% if current_user.is_authenticated %}
+      <center>
+        <div><font color="E4CEBD">Olá, {{ current_user.nome }}!</font></div>
+        <br/>
+        <a class="form-group btn btn-secondary" href="\logout">Sair</a>
+      </center>
+    {% endif %}
+ 
+    <div class="sidenav">
+      <a class="nav-link" href="{{ url_for('registro') }}">Cadastrar Cliente</a>
+      <a class="nav-link" href="{{ url_for('registrar_servico') }}">Cadastrar Serviço</a>
+        <a class="nav-link" href="{{ url_for('pesquisar_cliente') }}">Pesquisar Cliente</a>
+        <a class="nav-link" href="{{ url_for('pesquisar_funcionario') }}">Pesquisar Funcionário</a>
+        <a class="nav-link" href="{{ url_for('pesquisar_servico') }}">Pesquisar Serviço</a>
+        <a class="nav-link" href="{{ url_for('criar_agendamento') }}">Novo agendamento</a>
+        <a class="nav-link" href="{{ url_for('agendamentos') }}">Agenda</a>
+        <a class="nav-link" href="{{ url_for('logout') }}">Sair</a>
+    </div>
+
+{% endblock %}
+   

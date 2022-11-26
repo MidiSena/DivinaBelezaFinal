@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% include 'sidebar.html' %}
+{% block content %}
+    <center>
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning alert-dismissible  col-md-7" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+
+        <div class="form-group col-md-5">
+            <h3><font color="DEAE86">Cadastrar Funcionário</font></h3>
+            <div class="classe6" >
+                <form method="POST">
+
+                {{ form.hidden_tag() }}
+
+                {{ form.nome.label }}
+                {{ form.nome(class="form-control") }}
+                {% for erro in form.nome.errors %}
+                    <p>{{ erro }}</p>
+                {% endfor %}
+                {{ form.sobrenome.label }}
+                {{ form.sobrenome(class="form-control") }}
+                {% for erro in form.sobrenome.errors %}
+                    <p>{{ erro }}</p>
+                {% endfor %}
+                {{ form.cpf.label }}
+                {{ form.cpf(class="form-control") }}
+                {% for erro in form.cpf.errors %}
+                    <p>{{ erro }}</p>
+                {% endfor %}
+                {{ form.email.label }}
+                {{ form.email(class="form-control") }}
+                {% for erro in form.email.errors %}
+                    <p>{{ erro }}</p>
+                {% endfor %}
+                {{ form.telefone.label }}
+                {{ form.telefone(class="form-control", placeholder="(99) 9999-9999", pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})", title="Número de telefone precisa ser no formato (99) 9999-9999") }}
+                {{ form.administrador.label }}
+                {{ form.administrador(class="form-control") }}
+                {{ form.senha.label }}
+                {{ form.senha(class="form-control") }}
+                
+                <br><br>
+                {{ form.submit(class="form-group btn btn-success") }}
+                <br>
+                <br>
+                <a class="form-group btn btn-secondary" href="/">Voltar</a>
+                </form>
+            </div>
+        </div>
+    </center>
+{% endblock %}

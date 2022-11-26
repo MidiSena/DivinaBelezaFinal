@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<center>
+  {% for message in get_flashed_messages() %}
+  <div class="alert alert-warning alert-dismissible  col-md-7" role="alert">
+  {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+</center>
+
+  <section>
+    <div class="classe3">
+      <br/><br/><br/><br/>
+        <a button type="button" name="novo_agendamento" href="{{ url_for('criar_agendamento') }}" class="mb-sm btn btn-secondary">Novo agendamento</button></a>
+    </div>
+        <br/>
+   <!-- Search form-->
+    <div class="classe6">
+      <div class="classe8">
+        <script language="JavaScript">
+          <!--
+          var TRange=null;
+          function findString (str) {
+          if (parseInt(navigator.appVersion)<4) return;
+          var strFound;
+          if (window.find) {
+          
+            // CODE FOR BROWSERS THAT SUPPORT window.find
+            strFound=self.find(str);
+            if (strFound && self.getSelection && !self.getSelection().anchorNode) {
+            strFound=self.find(str)
+            }
+            if (!strFound) {
+            strFound=self.find(str,0,1)
+            while (self.find(str,0,1)) continue
+            }
+          }
+          else if (navigator.appName.indexOf("Microsoft")!=-1) {
+          
+            // EXPLORER-SPECIFIC CODE
+          
+            if (TRange!=null) {
+            TRange.collapse(false)
+            strFound=TRange.findText(str)
+            if (strFound) TRange.select()
+            }
+            if (TRange==null || strFound==0) {
+            TRange=self.document.body.createTextRange()
+            strFound=TRange.findText(str)
+            if (strFound) TRange.select()
+            }
+          }
+          else if (navigator.appName=="Opera") {
+            alert ("Opera browsers not supported, sorry...")
+            return;
+          }
+          if (!strFound) alert ("String '"+str+"' not found!")
+          return;
+          }
+          //-->
+          </script>
+          <form role="search" id="query" class="navbar-form" action="" onSubmit="if(this.t1.value!=null && this.t1.value!='') findString(this.t1.value);return false">
+          <input type="text" placeholder="Pesquisar agendamento" class="form" name=t1 value="" size=20>
+          <input type="submit" name=b1 value="Procurar">
+          <div class="form-group has-feedback">
+          </form>
+        </div>
+      </div>
+  <!-- END Search form-->
+  
+  <!-- Query-->
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="panel panel-default"  style="padding: 15px;">
+            <div class="table-responsive">
+              <table id="datatable4" class="table table-striped">
+                <thead>
+                  <tr>
+                      <th style="width:25%">Funcionário</th>
+                      <th style="width:25%">Cliente</th>
+                      <th style="width:20%">Data do agendamento</th>
+                      <th style="width:5%">Detalhes</th>
+                      <th style="width:2%"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for nome_cliente, nome_funcionario, agendamento  in agendamentos %}
+                    <tr>
+                      <td>{{ nome_funcionario.nome}} {{ nome_funcionario.sobrenome}}</td>
+                      <td>{{ nome_cliente.nome }} {{ nome_cliente.sobrenome }}</td>
+                      <td>{{ agendamento.agendamento_data }}</td>
+                      <td>
+                        <a button type="submit"  name="Procurar" class="btn btn-secondary" href="{{ url_for('editagendamento', agendamento_id=agendamento.agendamento_id) }}">Editar</button></a>
+                      </td>
+                      <td>
+                        <form method="POST" action="{{ url_for('delete_agendamento', agendamento_id=agendamento.agendamento_id) }}">
+                          <button type="submit" value="Excluir agendamento" class="btn btn-danger"
+                              onclick="return confirm('Tem certeza que deseja este agendamento?')">Excluir</button>
+                        </form>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

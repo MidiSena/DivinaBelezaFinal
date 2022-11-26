@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% include 'sidebar.html' %}
+{% block content %}
+	<center>
+		{% for message in get_flashed_messages() %}
+		<div class="alert alert-warning alert-dismissible  col-md-7" role="alert">
+		{{ message }}
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+		{% endfor %}
+	</center>
+
+	{% if admin == 'sim' %}
+	<center>
+		<div class="form-group col-md-5">
+			<h3><font color="DEAE86">Alterar dados do cliente</font></h3>
+			<div class="classe6">
+				<form method="post">
+					{{ form.hidden_tag() }}
+
+					{{ form.nome.label }}
+					{{ form.nome(class="form-control", value=cliente.nome) }}
+					{% for erro in form.nome.errors %}
+						<p>{{ erro }}</p>
+					{% endfor %}
+					{{ form.sobrenome.label }}
+					{{ form.sobrenome(class="form-control", value=cliente.sobrenome) }}
+					{% for erro in form.sobrenome.errors %}
+						<p>{{ erro }}</p>
+					{% endfor %}
+					{{ form.cpf.label }}
+					{{ form.cpf(class="form-control", value=cliente.cpf) }}
+					{% for erro in form.cpf.errors %}
+						<p>{{ erro }}</p>
+					{% endfor %}
+					{{ form.email.label }}
+					{{ form.email(class="form-control", value=cliente.email) }}
+					{% for erro in form.email.errors %}
+						<p>{{ erro }}</p>
+					{% endfor %}
+					{{ form.telefone.label }}
+					{{ form.telefone(class="form-control", value=cliente.telefone) }}
+					<br><br>
+					<button type="submit" class="btn btn-secondary">Enviar</button>
+					</p>
+				</form>
+			</div>
+		</div>
+	</center>
+	{% else %}
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			Desculpe! Você não tem autorização para alterar os dados dos clientes.
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% include 'sidebar.html' %}
+{% block content %}
+    <center><h3><font color="DEAE86">Dados do funcionário</font></h3></center>
+    <br/>
+
+    <div class="classe1">
+        <div class="container">
+            <div class="classe3">
+                <div class="classe4">
+                    <div class="text-center text-md-center mb-4 mt-md-0">
+                        <b>
+                        <p>Nome: {{ funcionario.nome }} {{ funcionario.sobrenome }}</p>
+                        <p>CPF: {{ funcionario.cpf }}</p>
+                        <p>E-mail: {{ funcionario.email }}</p>
+                        <p>Telefone: {{ funcionario.telefone }}</p>
+                        <p>Administrador: {{ funcionario.administrador }}</p>
+                        </b>
+                        <br/>
+                        <a button type="submit" name="editar" href="{{ url_for('editfuncionario', funcionario_id=funcionario.id) }}" class="btn btn-secondary"> Editar funcionario</button></a>
+                        <br/><br/>
+                        <form method="POST"
+                            action="{{ url_for('deletefuncionario', funcionario_id=funcionario.id) }}">
+                            <button type="submit" value="Remover funcionario" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir este funcionário?')">Remover funcionario</button>
+                        </form>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

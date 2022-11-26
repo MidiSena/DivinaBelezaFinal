@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% include 'sidebar.html' %}
+{% block content %}
+	<center>
+		{% for message in get_flashed_messages() %}
+		<div class="alert alert-warning alert-dismissible  col-md-7" role="alert">
+		{{ message }}
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+		{% endfor %}
+>
+		<div class="form-group col-md-5">
+			<h3><font color="DEAE86">Alterar dados do funcionario</font></h3>
+			<div class="classe6">
+				<form method="post">
+					{{ form.hidden_tag() }}
+
+					{{ form.servico.label }}
+					{{ form.servico(class="form-control", value=servico.servico) }}
+					{% for erro in form.servico.errors %}
+						<p>{{ erro }}</p>
+					{% endfor %}
+					{{ form.preco.label }}
+					{{ form.preco(class="form-control", value=servico.preco) }}
+					{% for erro in form.preco.errors %}
+						<p>{{ erro }}</p>
+					{% endfor %}
+					{{ form.tempo.label }}
+					{{ form.tempo(class="form-control", value=servico.preco) }}
+					{% for erro in form.tempo.errors %}
+						<p>{{ erro }}</p>
+					{% endfor %}
+					
+					<br><br>
+					<button type="submit" class="btn btn-secondary">Enviar</button>
+					</p>
+				</form>
+			</div>
+		</div>
+	</center>
+{% endblock %}
